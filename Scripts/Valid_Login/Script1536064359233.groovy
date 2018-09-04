@@ -19,5 +19,13 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKe
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.openBrowser('www.google.com')
+WebUI.openBrowser('https://staging.lutfi-car.com/en/login')
+
+WebUI.waitForPageLoad(10)
+
+WebUI.sendKeys(findTestObject('LoginPage/txt_username'), username)
+
+WebUI.sendKeys(findTestObject('LoginPage/txt_password'), password)
+
+WebUI.click(findTestObject('LoginPage/btn_login'))
 

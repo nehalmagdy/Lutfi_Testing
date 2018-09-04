@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Valid_Login</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>4c9f51bc-67bf-4066-9450-5912af2c7f04</testCaseGuid>
+   <variable>
+      <defaultValue>'nehal@gmail.com'</defaultValue>
+      <description></description>
+      <id>6cd38a55-63f0-4bf3-a163-49c63a0687fb</id>
+      <masked>false</masked>
+      <name>username</name>
+   </variable>
+   <variable>
+      <defaultValue>'testernehal735'</defaultValue>
+      <description></description>
+      <id>c179679f-784a-428f-a449-155e193cad55</id>
+      <masked>false</masked>
+      <name>password</name>
+   </variable>
+</TestCaseEntity>

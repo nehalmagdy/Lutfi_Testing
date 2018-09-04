@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>Login</name>
+   <name>HomePage_Count_Validation</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>4c9f51bc-67bf-4066-9450-5912af2c7f04</testCaseGuid>
+   <testCaseGuid>81a3016c-0a9c-40e3-84fe-c4367e1fb6e5</testCaseGuid>
 </TestCaseEntity>
