@@ -21,6 +21,8 @@ import internal.GlobalVariable as GlobalVariable
 
 WebUI.openBrowser('https://staging.lutfi-car.com/en/login')
 
+WebUI.maximizeWindow();
+
 WebUI.waitForPageLoad(10)
 
 WebUI.sendKeys(findTestObject('LoginPage/txt_username'), username)

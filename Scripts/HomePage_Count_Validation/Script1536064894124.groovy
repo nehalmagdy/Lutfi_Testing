@@ -27,14 +27,18 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.logging.KeywordLogger
 
 
+
+boolean Failed = false;
+
 KeywordLogger log = new KeywordLogger()
 
 WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
 
+log.logInfo("Test case started")
+
 //connect to db
 CustomKeywords.'com.database.lutfi.Database.connectDB'('139.162.159.139', 'staging', '3306', 'nehal', 'xRETOHqqhrnNa85e')
 
-log.logInfo("Connection is done")
 /*
 //available driver
 ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('')
@@ -55,6 +59,7 @@ String CDriverCount = WebUI.getText(findTestObject('HomePage/lbl_CDriverCount'))
 if(CDriverCountDB != Integer.parseInt(CDriverCount)){
 	//error
 	log.logInfo("Cancelled drivers count is wrong should be "+CDriverCount)
+	Failed = true;
 }
 
 //no driver found
@@ -64,7 +69,8 @@ int NoDriverCountDB = res.getInt(1)
 String NoDriverCount = WebUI.getText(findTestObject('HomePage/lbl_CTripsCount'))
 if(NoDriverCountDB != Integer.parseInt(NoDriverCount)){
 	//error
-	log.logInfo("No drivers found count is wrong should be "+NoDriverCountDB)
+	log.logError("No drivers found count is wrong should be "+NoDriverCountDB)
+	Failed = true;
 }
 
 //passenger cancelled
@@ -74,7 +80,8 @@ int PassengerCancelledCountDB = res.getInt(1)
 String PassengerCancelledCount = WebUI.getText(findTestObject('HomePage/lbl_PassengerCount'))
 if(PassengerCancelledCountDB != Integer.parseInt(PassengerCancelledCount)){
 	//error
-	log.logInfo("Cancelled passengers count is wrong should be "+PassengerCancelledCountDB)
+	log.logError("Cancelled passengers count is wrong should be "+PassengerCancelledCountDB)
+	Failed = true
 }
 
 //paid trips
@@ -84,7 +91,8 @@ int PaidTripsCountDB = res.getInt(1)
 String PaidTripsCount = WebUI.getText(findTestObject('HomePage/lbl_PTripsCount'))
 if(PaidTripsCountDB != Integer.parseInt(PaidTripsCount)){
 	//error
-	log.logInfo("Paid Trips count is wrong should be "+PaidTripsCountDB)
+	log.logError("Paid Trips count is wrong should be "+PaidTripsCountDB)
+	Failed = true;
 }
 
 /*
@@ -136,7 +144,8 @@ int MostUsedDevicesCountDB = res.getInt(1)
 String MostUsedDevicesCount = WebUI.getText(findTestObject('HomePage/lbl_MostUsedDevices'))
 if(MostUsedDevicesCountDB != Integer.parseInt(MostUsedDevicesCount)){
 	//error
-	log.logInfo("Most Used Devices Count is wrong should be "+MostUsedDevicesCountDB)
+	log.logError("Most Used Devices Count is wrong should be "+MostUsedDevicesCountDB)
+	Failed = true;
 }
 
 
@@ -167,10 +176,24 @@ while(res.next()){
 		// error not all devices names appears in the graph
 		//break from the loop 
 		// log the names that doesn't appear
-		log.logInfo("Some Device Names doesn't appear in the graph: "+ type)
+		log.logError("Some Device Names doesn't appear in the graph: "+ type)
+		Failed = true;
 	}
 
 }
 
+
+if(Failed){
+	// test case failed
+	log.logPassed("Home Page Count values are Correct")
+}
+else{
+	//test case passed
+	log.logFailed("Some Home Page Count values are InCorrect")
+} 
+
+log.logInfo("End of Home Page Testcase");
+
 CustomKeywords.'com.database.lutfi.Database.closeDatabaseConnection'()
 
+WebUI.closeBrowser()
