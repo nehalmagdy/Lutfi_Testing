@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>txt_comission</name>
+   <tag></tag>
+   <elementGuidId>d4af52bb-59c7-441e-9b0f-0470ac27e899</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value></value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//*[@id=&quot;dataTableBuilder_wrapper&quot;]/div[2]/div[1]/div/table/thead/tr[1]/th/form/div[4]/input</value>
+   </webElementProperties>
+</WebElementEntity>

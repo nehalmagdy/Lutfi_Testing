@@ -29,20 +29,20 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.logging.KeywordLogger as KeywordLogger
 
 boolean AllFound = true;
-//boolean correct = WebUI.callTestCase(findTestCase('Agency Sub Menu/ValidateCountryCityAgency'), [:], FailureHandling.STOP_ON_FAILURE)
-WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
-WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
-WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
-WebUI.waitForPageLoad(20)
-WebUI.click(findTestObject('AgencyControlPage/btn_AddAgency'))
+boolean correct = WebUI.callTestCase(findTestCase('Agency Sub Menu/ValidateCountryCityAgency'), [:], FailureHandling.STOP_ON_FAILURE)
+//WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
+//WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
+//WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
+//WebUI.waitForPageLoad(20)
+//WebUI.click(findTestObject('AgencyControlPage/btn_AddAgency'))
 
 KeywordLogger log = new KeywordLogger()
 
-//System.out.println(correct)
+System.out.println(correct)
 
 data = findTestData('AddAgency')
 
-//if (correct) {
+if (correct) {
     for (def index : (0..data.getRowNumbers() - 1)) {
 		 WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/cmbo_Country'), data.internallyGetValue('Country', index), 
             false,FailureHandling.OPTIONAL)
@@ -105,15 +105,11 @@ data = findTestData('AddAgency')
 					//else{//different Error messages size
 						
 					//}
-	    
-					
-					
-			}
+	    	}
 			else{
 				AllFound = false;
 				log.logFailed("Case # "+ index +" Failed")
-			}
-			
+			}			
     }
 	
 	if(AllFound){
@@ -124,6 +120,6 @@ data = findTestData('AddAgency')
 		log.logFailed("Test Case Failed")
 	}
 	
-//}
+}
 
 WebUI.closeBrowser()

@@ -95,47 +95,77 @@ if(PaidTripsCountDB != Integer.parseInt(PaidTripsCount)){
 	Failed = true;
 }
 
-/*
+
 //Need to pay to drivers
-res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('')
+res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT count(*) FROM pay_to_driver where status=1')
 res.next()
 int NTPDriverDB = res.getInt(1)
 String NTPDriver = WebUI.getText(findTestObject('HomePage/lbl_NeedToPayToDriver'))
 if(NTPDriverDB != Integer.parseInt(NTPDriver)){
 	//error
+	log.logError("Need to pay to driver count is wrong should be "+NTPDriverDB)
+	Failed = true;
 }
 
+//Need to pay to drivers due amount
+res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT sum(amount) FROM staging.pay_to_driver where status=1')
+res.next()
+int NTPDriverDMDB = res.getInt(1)
+String NTPDriverDA = WebUI.getText(findTestObject('HomePage/NTPD_DueAmount')).split(":")[1].trim()
+if(NTPDriverDMDB != Integer.parseInt(NTPDriverDA)){
+	//error
+	log.logError("Need to pay to driver due amount is wrong should be "+NTPDriverDMDB)
+	Failed = true;
+}
 
 //Need to pay to agency
-res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('')
+res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT count(*) FROM pay_to_agency where status=0')
 res.next()
 int NTPAgencyDB = res.getInt(1)
 String NTPAgency = WebUI.getText(findTestObject('HomePage/lbl_NeedToPayToAgency'))
 if(NTPAgencyDB != Integer.parseInt(NTPAgency)){
 	//error
+	log.logError("Need to pay to Agency count is wrong should be "+NTPAgencyDB)
+	Failed = true;
+}
+
+
+//Need to pay to agency DA
+res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT sum(amount) FROM pay_to_agency where status=0')
+res.next()
+int NTPAgencyDADB = res.getInt(1)
+String NTPAgencyDA = WebUI.getText(findTestObject('HomePage/NTPA_DueAmount')).split(":")[1].trim()
+if(NTPAgencyDADB != Integer.parseInt(NTPAgencyDA)){
+	//error
+	log.logError("Need to pay to Agency count is wrong should be "+NTPAgencyDADB)
+	Failed = true;
 }
 
 
 //taxes
-res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('')
+res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT sum(value) FROM tax_balances')
 res.next()
 int TaxesCountDB = res.getInt(1)
 String TaxesCount = WebUI.getText(findTestObject('HomePage/lbl_Taxes'))
 if(TaxesCountDB != Integer.parseInt(TaxesCount)){
 	//error
+	log.logError("Tax Amount is wrong should be "+TaxesCountDB)
+	Failed = true;
 }
 
 
 
 //company balance
-res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('')
+res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select new_balance FROM balancecompany WHERE created_at = (SELECT MAX(created_at) FROM balancecompany)')
 res.next()
 int companyBalancetDB = res.getInt(1)
-String companyBalancet = WebUI.getText(findTestObject('HomePage/lbl_CompanyBalance'))
+String companyBalance = WebUI.getText(findTestObject('HomePage/lbl_CompanyBalance'))
 if(companyBalancetDB != Integer.parseInt(companyBalance)){
 	//error
+	log.logError("Company Balance is wrong should be "+companyBalancetDB)
+	Failed = true;
 }
-*/
+
 
 //Most Used Devices count
 res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select count(*) from devices')
@@ -148,7 +178,7 @@ if(MostUsedDevicesCountDB != Integer.parseInt(MostUsedDevicesCount)){
 	Failed = true;
 }
 
-
+/*
 //Get table of devices names
 boolean found = false;
 
@@ -180,7 +210,7 @@ while(res.next()){
 		Failed = true;
 	}
 
-}
+}*/
 
 
 if(Failed){
