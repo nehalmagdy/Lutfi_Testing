@@ -27,7 +27,7 @@ import org.openqa.selenium.WebElement as WebElement
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.logging.KeywordLogger as KeywordLogger
 
-boolean correct = WebUI.callTestCase(findTestCase('Agency Sub Menu/ValidateCountryCityAgency'), [:], FailureHandling.STOP_ON_FAILURE)
+boolean correct = WebUI.callTestCase(findTestCase('Agency Sub Menu/Agency/ValidateCountryCityAgency'), [:], FailureHandling.STOP_ON_FAILURE)
 
 KeywordLogger log = new KeywordLogger()
 
@@ -39,10 +39,10 @@ boolean Failed = false;
            
 String c = country
 String ci = city  
-       WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/cmbo_Country'), country,false,FailureHandling.OPTIONAL)
+       WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/AddAgencyPage/cmbo_Country'), country,false,FailureHandling.OPTIONAL)
 
 	   WebUI.delay(10)
-        WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/combo_City'), city, false,
+        WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/AddAgencyPage/combo_City'), city, false,
             FailureHandling.OPTIONAL)
 
 		WebUI.delay(10)
@@ -55,7 +55,7 @@ String ci = city
 
         WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyMobile'), mobile)
 
-        WebUI.click(findTestObject('AgencyControlPage/btn_SaveAgency'))
+        WebUI.click(findTestObject('AgencyControlPage/AddAgencyPage/btn_SaveAgency'))
 		
 		String url = WebUI.getUrl();
 		if(url== "https://staging.lutfi-car.com/en/admin/agency")

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>btn_SaveAgency</name>
+   <name>lbl_getTransactions</name>
    <tag></tag>
-   <elementGuidId>153e841c-1e4b-46c8-9a54-300497e3be1c</elementGuidId>
+   <elementGuidId>3774c950-8a06-48bd-93a3-0ae431b1a35b</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
@@ -17,6 +17,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>/html/body/div[2]/div[3]/div/div[1]/div/div/div[2]/form/div[9]/button</value>
+      <value>/html/body/div[2]/div[3]/div/div[1]/div[2]/div[2]/div/div/div[1]/h2</value>
    </webElementProperties>
 </WebElementEntity>

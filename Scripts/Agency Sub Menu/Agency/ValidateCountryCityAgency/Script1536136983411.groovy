@@ -36,7 +36,7 @@ log.logInfo('Agency Data Test Case Started')
 CustomKeywords.'com.database.lutfi.Database.connectDB'('139.162.159.139', 'staging', '3306', 'nehal', 'xRETOHqqhrnNa85e')
 
 //Get Country Names
-ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select name from country')
+ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select name from country where deleted_at is null')
 
 res.next()
 
@@ -77,16 +77,16 @@ for (int i = 0; i < comboOptions.size(); i++) {
 }
 
 if (notFound) {
-    log.logError('Not All Country names appear in the combo')
+    log.logFailed('Not All Country names appear in the combo')
 } else {
-    log.logInfo('All Country names appeared successfully')
+    log.logPassed('All Country names appeared successfully')
 }
 
 
 //select cities of the chosen country
 // get the selected country text
 
-res = CustomKeywords.'com.database.lutfi.Database.executeQuery'("SELECT city.name FROM staging.city inner join country on country.id = city.country_id where country.name like '%"+CountryAt0+"%'")
+res = CustomKeywords.'com.database.lutfi.Database.executeQuery'("SELECT city.name FROM staging.city inner join country on country.id = city.country_id where country.name like '%"+CountryAt0+"%' and city.deleted_at is null")
 res.next()
 
 //validate city names
@@ -117,10 +117,10 @@ for (int i = 0; i < comboOptions.size(); i++) {
 }
 
 if (notFound) {
-    log.logError('Wrong City Names or not complete ')
+    log.logFailed('Wrong City Names or not complete ')
 	return false;
 } else {
-    log.logInfo('All City names appeared successfully')
+    log.logPassed('All City names appeared successfully')
 	return true;
 }
 

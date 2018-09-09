@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>txt_Location</name>
+   <name>lbl_payTransactions</name>
    <tag></tag>
-   <elementGuidId>2883d04a-03d4-43b4-9131-b30057a5b259</elementGuidId>
+   <elementGuidId>a9ad4a18-54b5-428b-9d13-3a0ce9d4f961</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
@@ -17,6 +17,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//*[@id=&quot;pac-input&quot;]</value>
+      <value>/html/body/div[2]/div[3]/div/div[1]/div[2]/div[2]/div/div/div[1]/h2</value>
    </webElementProperties>
 </WebElementEntity>

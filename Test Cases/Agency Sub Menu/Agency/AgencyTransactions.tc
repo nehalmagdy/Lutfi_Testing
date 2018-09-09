@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>DeletedSelectedAgency</name>
+   <name>AgencyTransactions</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>3106ee31-78f7-415f-803c-5d528ae4d7e5</testCaseGuid>
+   <testCaseGuid>7ad6fe5b-7ec7-4f0b-9393-eef2f9781ee5</testCaseGuid>
 </TestCaseEntity>

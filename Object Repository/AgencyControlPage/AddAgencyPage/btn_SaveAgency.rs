@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>cmbo_Country</name>
+   <name>btn_SaveAgency</name>
    <tag></tag>
-   <elementGuidId>fc22b8bc-e0f4-4644-9228-3ba018a25b35</elementGuidId>
+   <elementGuidId>153e841c-1e4b-46c8-9a54-300497e3be1c</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -17,6 +16,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//*[@id=&quot;country&quot;]</value>
+      <value>/html/body/div[2]/div[3]/div/div[1]/div/div/div[2]/form/div[9]/button</value>
    </webElementProperties>
 </WebElementEntity>

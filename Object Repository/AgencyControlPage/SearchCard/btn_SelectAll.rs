@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>combo_City</name>
+   <name>btn_SelectAll</name>
    <tag></tag>
-   <elementGuidId>5fc95469-8fc3-4536-8177-0b0d2a0612f3</elementGuidId>
+   <elementGuidId>8523d41b-b822-44af-b49f-9708825fbb97</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
@@ -17,6 +17,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//*[@id=&quot;city&quot;]</value>
+      <value>//*[@id=&quot;dataTableBuilder_wrapper&quot;]/div[2]/div[1]/div/table/thead/tr[1]/th/form/div[6]/i[2]</value>
    </webElementProperties>
 </WebElementEntity>

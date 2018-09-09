@@ -18,7 +18,41 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKeywords
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
+import org.openqa.selenium.support.ui.Select as Select
+import org.openqa.selenium.By as By
+import java.sql.ResultSet as ResultSet
+import org.openqa.selenium.WebDriver as WebDriver
+import org.openqa.selenium.WebElement as WebElement
+import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
+import com.kms.katalon.core.logging.KeywordLogger as KeywordLogger
 
 WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
 
 KeywordLogger log = new KeywordLogger()
+
+WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
+
+WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
+
+WebUI.waitForPageLoad(20)
+
+WebUI.click(findTestObject('AgencyControlPage/SearchCard/btn_SelectAll'))
+
+WebUI.click(findTestObject('AgencyControlPage/SearchCard/btn_Delete'))
+
+WebUI.click(findTestObject('AgencyControlPage/SearchCard/btn_deleteConfirm'))
+
+
+WebDriver driver = DriverFactory.getWebDriver()
+WebElement Table = driver.findElement(By.xpath('//*[@id=\'dataTableBuilder\']'))
+WebUI.delay(10)
+WebElement tbody = Table.findElement(By.tagName('tbody'))
+WebUI.delay(10)
+List<WebElement> rows_table = tbody.findElements(By.tagName('tr'))
+
+int rows_count = rows_table.size()
+
+if(rows_count ==0)
+	log.logPassed("All Deleted Successfully")
+else 
+	log.logFailed("All are not deleted")

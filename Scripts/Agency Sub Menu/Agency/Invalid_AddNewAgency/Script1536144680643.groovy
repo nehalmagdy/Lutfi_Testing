@@ -29,7 +29,7 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.logging.KeywordLogger as KeywordLogger
 
 boolean AllFound = true;
-boolean correct = WebUI.callTestCase(findTestCase('Agency Sub Menu/ValidateCountryCityAgency'), [:], FailureHandling.STOP_ON_FAILURE)
+boolean correct = WebUI.callTestCase(findTestCase('Agency Sub Menu/Agency/ValidateCountryCityAgency'), [:], FailureHandling.STOP_ON_FAILURE)
 //WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
 //WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
 //WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
@@ -44,10 +44,10 @@ data = findTestData('AddAgency')
 
 if (correct) {
     for (def index : (0..data.getRowNumbers() - 1)) {
-		 WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/cmbo_Country'), data.internallyGetValue('Country', index), 
+		 WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/AddAgencyPage/cmbo_Country'), data.internallyGetValue('Country', index), 
             false,FailureHandling.OPTIONAL)
 
-        WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/combo_City'), data.internallyGetValue('City', index), 
+        WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/AddAgencyPage/combo_City'), data.internallyGetValue('City', index), 
             false,FailureHandling.OPTIONAL)
 
         WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyName'), data.internallyGetValue('Name', index))
@@ -58,7 +58,7 @@ if (correct) {
 
         WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyMobile'), data.internallyGetValue('Mobile', index))
 
-        WebUI.click(findTestObject('AgencyControlPage/btn_SaveAgency'))
+        WebUI.click(findTestObject('AgencyControlPage/AddAgencyPage/btn_SaveAgency'))
 		
 		
 		String ErrorMessages = data.internallyGetValue('Error Messages', index)
@@ -70,7 +70,7 @@ if (correct) {
 		// need to check the presence of the item on the page first as an error may not appear at it navigates to the next page
 		// 
 		
-		if(WebUI.verifyElementPresent(findTestObject("AgencyControlPage/ErrorsDiv"), 4,FailureHandling.OPTIONAL)){
+		if(WebUI.verifyElementPresent(findTestObject("AgencyControlPage/AddAgencyPage/ErrorsDiv"), 4,FailureHandling.OPTIONAL)){
 		
 				WebElement errorsDiv = driver.findElement(By.xpath('/html/body/div[2]/div[3]/div/div[1]/div/div/div[2]/div'))
 				WebUI.delay(10)
