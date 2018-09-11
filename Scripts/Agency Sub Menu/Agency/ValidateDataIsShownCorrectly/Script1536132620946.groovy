@@ -48,9 +48,9 @@ res.next()
 
 boolean notfound = false
 
-WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
 
-WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
 
 WebUI.waitForPageLoad(20)
 

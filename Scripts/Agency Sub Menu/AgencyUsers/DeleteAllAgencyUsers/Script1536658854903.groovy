@@ -18,16 +18,17 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKeywords
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
+import org.openqa.selenium.support.ui.Select as Select
+import org.openqa.selenium.By as By
 import java.sql.ResultSet as ResultSet
 import org.openqa.selenium.WebDriver as WebDriver
 import org.openqa.selenium.WebElement as WebElement
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.logging.KeywordLogger as KeywordLogger
-import org.openqa.selenium.support.ui.Select as Select
-import org.openqa.selenium.By as By
-
 
 WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
+
+KeywordLogger log = new KeywordLogger()
 
 WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
 
@@ -35,47 +36,23 @@ WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
 
 WebUI.waitForPageLoad(20)
 
-KeywordLogger log = new KeywordLogger()
+WebUI.click(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/btn_SelectAll'))
 
-WebUI.click(findTestObject('AgencyControlPage/AgencyPage/btn_ReFill'))
+WebUI.click(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/btn_Delete'))
 
-String from = WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'))
+WebUI.click(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/btn_deleteConfirm'))
 
-String to =  WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'))
 
-String comission =  WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_comission'))
-
-String mobile = WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_mobile'))
-
-String name = WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_Name'))
-
-if(name.equals("")&&from.equals("")&&to.equals("")&&mobile.equals("")&&comission.equals("")){
-	log.logPassed("All Fields are clear")
-}
-else{
-	log.logFailed("Not All Fields are Clear")
-}
-
-//connect to db
-CustomKeywords.'com.database.lutfi.Database.connectDB'('139.162.159.139', 'staging', '3306', 'nehal', 'xRETOHqqhrnNa85e')
-
-//#of agencies that should appear
-ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select count(*) from agency where deleted_at is null')
-res.next()
-int agencyCount = res.getInt(1)
-
-//get agency grid Table count
 WebDriver driver = DriverFactory.getWebDriver()
 WebElement Table = driver.findElement(By.xpath('//*[@id=\'dataTableBuilder\']'))
 WebUI.delay(10)
 WebElement tbody = Table.findElement(By.tagName('tbody'))
 WebUI.delay(10)
 List<WebElement> rows_table = tbody.findElements(By.tagName('tr'))
+
 int rows_count = rows_table.size()
-WebUI.delay(10)
-if (rows_count == agencyCount) {
-	log.logPassed("Data is Refilled Correctly")
-}
-else{
-	log.logFailed("Data is Refilled InCorrectly")
-}
+
+if(rows_count ==0)
+	log.logPassed("All Deleted Successfully")
+else 
+	log.logFailed("All are not deleted")

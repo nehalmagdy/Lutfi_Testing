@@ -30,62 +30,54 @@ WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com
 
 KeywordLogger log = new KeywordLogger()
 
-log.logInfo('Agency Data Test Case Started')
+log.logInfo('Agency Bank Account Data Test Case Started')
 
 //connect to db
 CustomKeywords.'com.database.lutfi.Database.connectDB'('139.162.159.139', 'staging', '3306', 'nehal', 'xRETOHqqhrnNa85e')
 
 //#of agencies that should appear
-ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select count(*) from users where group_id = 3 and deleted_at is null')
-
+ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT agency_bank_account_details.id, account_number, agency.name, bank.name FROM staging.agency_bank_account_details inner join agency on agency.id = agency_bank_account_details.agency_id inner join bank on bank.id =agency_bank_account_details.bank_id where deleted_at is null')
 res.next()
 
-int agencyUsersCount = res.getInt(1)
+ResultSet cres = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT count(*) FROM staging.agency_bank_account_details inner join agency on agency.id = agency_bank_account_details.agency_id inner join bank on bank.id =agency_bank_account_details.bank_id where deleted_at is null')
+cres.next()
+int agencyBankCount = res.getInt(1)
 
-res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('SELECT name,email,id FROM users where group_id = 3 and deleted_at is null;')
 
-res.next()
 
 boolean notfound = false
 
 WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
 
-WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyUserMenuItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyBankAccountMenuItem'))
 
 WebUI.waitForPageLoad(20)
 
 WebDriver driver = DriverFactory.getWebDriver()
-
 WebElement Table = driver.findElement(By.xpath('//*[@id="dataTableBuilder"]'))
-
 WebUI.delay(10)
-
 WebElement tbody = Table.findElement(By.tagName('tbody'))
-
 WebUI.delay(10)
-
 List<WebElement> rows_table = tbody.findElements(By.tagName('tr'))
-
 int rows_count = rows_table.size()
-
 WebUI.delay(10)
-
-if (rows_count == agencyUsersCount) {
+if (rows_count == agencyBankCount) {
 	for (int row = 0; row < rows_count; row++) {
 		List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName('td'))
-
 		int columns_count = Columns_row.size()
 
-		String id = Columns_row[0].findElement(By.tagName("input")).getAttribute("value")
+		String cellID = Columns_row[1].findElement(By.tagName("input")).getAttribute("value")
+		String cellAccountNumber = Columns_row.get(2).getText()
+		String cellAgencyName = Columns_row.get(3).getText()
+		String cellBankName = Columns_row.get(4).getText()
 		
-		String celltext = Columns_row.get(1).getText()
-		String emailText = Columns_row.get(2).getText()
-		String DBName = res.getString(1)
-		String DBEmail = res.getString(2)
-		String DBID = res.getString(3)
+		String DBID = res.getString(1)
+		String DBAccNum = res.getString(2)
+		String DBAgencyName = res.getString(3)
+		String DBBankName = res.getString(4)
 		
 		// as they appear in the same order as appears in the db
-		if (!(id.equalsIgnoreCase(DBID) && celltext.equalsIgnoreCase(DBName) && emailText.equalsIgnoreCase(DBEmail))) {
+		if (!(cellID.equalsIgnoreCase(DBID) && cellAccountNumber.equalsIgnoreCase(DBAccNum) && cellAgencyName.equalsIgnoreCase(DBAgencyName) && cellBankName.equalsIgnoreCase(DBBankName))) {
 			notfound = true
 			break
 		}
@@ -95,12 +87,12 @@ if (rows_count == agencyUsersCount) {
 	
 	if (notfound) {
 		// an agency name doesn't appear in the table
-		log.logFailed('Some Agencies Users names doesn\'t appear') // All names appeared
+		log.logFailed('Some Agencies Bank Accounts didn\'t appear') // All names appeared
 	} //wrong number od agencies
 	else {
-		log.logPassed('All Agencies Users appeared successfully')
+		log.logPassed('All Bank Accounts appeared successfully')
 	}
 } else {
-	log.logFailed('Number of Agencies Users Shown is not the same as the ones retrieved from the DB which is ' + agencyUsersCount)
+	log.logFailed('Number of Agencies Bank Accounts Shown is not the same as the ones retrieved from the DB which is ' + agencyBankCount)
 }
 

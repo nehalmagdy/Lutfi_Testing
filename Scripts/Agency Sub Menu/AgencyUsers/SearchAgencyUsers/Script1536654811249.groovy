@@ -34,7 +34,7 @@ WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com
 
 WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
 
-WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyUserMenuItem'))
 
 WebUI.waitForPageLoad(20)
 
@@ -43,7 +43,7 @@ WebUI.waitForPageLoad(20)
 CustomKeywords.'com.database.lutfi.Database.connectDB'('139.162.159.139', 'staging', '3306', 'nehal', 'xRETOHqqhrnNa85e')
 
 
-data = findTestData('SearchData')
+data = findTestData('SearchAgencyUsers')
 
 for (def index : (0..data.getRowNumbers() - 1)) {
 
@@ -52,49 +52,47 @@ for (def index : (0..data.getRowNumbers() - 1)) {
     
 	
 	String name = data.internallyGetValue('name', index)
-    String comission = data.internallyGetValue('comission', index)
-    String mobile = data.internallyGetValue('mobile', index)
+    String email = data.internallyGetValue('email', index)
 	
 		
 	
-	WebUI.clickOffset(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'),0,0)
+	WebUI.clickOffset(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'),0,0)
 	
 	if(from.equalsIgnoreCase("")){
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'), Keys.chord('f', Keys.BACK_SPACE))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'), Keys.chord('f', Keys.ARROW_RIGHT))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'), Keys.chord('f', Keys.BACK_SPACE))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'), Keys.chord('f', Keys.ARROW_RIGHT))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'), Keys.chord('f', Keys.BACK_SPACE))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'), Keys.chord('f', Keys.BACK_SPACE))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'), Keys.chord('f', Keys.ARROW_RIGHT))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'), Keys.chord('f', Keys.BACK_SPACE))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'), Keys.chord('f', Keys.ARROW_RIGHT))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'), Keys.chord('f', Keys.BACK_SPACE))
 		//WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'), Keys.chord('f', Keys.ARROW_RIGHT))
 	}
 	else{
-	WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'), from.replaceAll("/", ""))
+	WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'), from.replaceAll("/", ""))
 	}
    
-	 WebUI.clickOffset(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'),0,0)
+	 WebUI.clickOffset(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_to'),0,0)
 	
 	 if(to.equalsIgnoreCase("")){
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'), Keys.chord('f', Keys.BACK_SPACE))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'), Keys.chord('f', Keys.ARROW_RIGHT))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'), Keys.chord('f', Keys.BACK_SPACE))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'), Keys.chord('f', Keys.ARROW_RIGHT))
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'), Keys.chord('f', Keys.BACK_SPACE))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_to'), Keys.chord('f', Keys.BACK_SPACE))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_to'), Keys.chord('f', Keys.ARROW_RIGHT))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_to'), Keys.chord('f', Keys.BACK_SPACE))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_to'), Keys.chord('f', Keys.ARROW_RIGHT))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_to'), Keys.chord('f', Keys.BACK_SPACE))
 	}
 	else{
-		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'), to.replaceAll("/", ""))
+		WebUI.sendKeys(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_to'), to.replaceAll("/", ""))
 	}
 	
-	WebUI.setText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_mobile'), mobile)
-	WebUI.setText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_comission'), comission)
-	WebUI.setText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_Name'), name)
+	WebUI.setText(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_email'), email)
+	WebUI.setText(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_name'), name)
 
-    WebUI.click(findTestObject('AgencyControlPage/AgencyPage/SearchCard/btn_Search'))
+    WebUI.click(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/btn_search'))
 	
 	boolean previousAdded = false;
 	boolean whereAdded = false;
 	
-	String Query = "select id from agency"
-	String cQuery = "select count(*) from agency"
+	String Query = "select id from users "
+	String cQuery = "select count(*) from users "
 	
 	if(! name.equalsIgnoreCase("")){
 		if(!whereAdded){
@@ -106,21 +104,7 @@ for (def index : (0..data.getRowNumbers() - 1)) {
 		cQuery+= "name ='"+name+"'"
 		previousAdded=true;
 	}
-	if(! mobile.equalsIgnoreCase("")){
-		if(!whereAdded){
-			Query+=" where "
-			whereAdded = true;
-			cQuery+=" where "
-		}
-		if(previousAdded){
-			Query+=" and "
-			cQuery+=" and "
-		}
-		Query+= "mobile = "+mobile
-		cQuery+= "mobile = "+mobile
-		previousAdded=true;
-	}
-	if(! comission.equalsIgnoreCase("")){
+	if(! email.equalsIgnoreCase("")){
 		if(!whereAdded){
 			Query+=" where "
 			cQuery+=" where "
@@ -130,8 +114,8 @@ for (def index : (0..data.getRowNumbers() - 1)) {
 			Query+=" and "
 			cQuery+=" and "
 		}
-		Query+= "comission = "+comission
-		cQuery+= "comission = "+comission
+		Query+= "email = '"+email+"'"
+		cQuery+= "email = '"+email+"'"
 		previousAdded=true;
 	}
 	if(! to.equalsIgnoreCase("")){
@@ -166,7 +150,6 @@ for (def index : (0..data.getRowNumbers() - 1)) {
 		cQuery+= "date(created_at) >= '"+fromDB+"'"
 		previousAdded=true;
 	}
-	
 	if(! whereAdded) {
 		Query+=" where "
 		cQuery+=" where "
@@ -175,8 +158,8 @@ for (def index : (0..data.getRowNumbers() - 1)) {
 		Query+=" and "
 		cQuery+=" and "
 	}
-	Query +=" deleted_at is null"
-	cQuery +=" deleted_at is null"
+	Query +=" deleted_at is null and group_id =3"
+	cQuery +=" deleted_at is null and group_id =3"
 	
 	ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'(Query)
 	//res.next()
@@ -196,7 +179,7 @@ for (def index : (0..data.getRowNumbers() - 1)) {
 	WebUI.delay(10)
 	boolean AllFound = true;
 	
-	String EmptyGrid = WebUI.getText(findTestObject("AgencyControlPage/AgencyPage/EmptyGridTD"))
+	String EmptyGrid = WebUI.getText(findTestObject("AgencyControlPage/AgencyUsersPage/EmptyGridTD"))
 	if(EmptyGrid.equalsIgnoreCase("No data available in table") && count==0){
 		//pass
 		log.logPassed("Correct Data")

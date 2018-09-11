@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Update_Agency</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>5d84b5f3-51d3-4b50-a9cd-21ffba2c2791</testCaseGuid>
+   <variable>
+      <defaultValue>'new'</defaultValue>
+      <description></description>
+      <id>48330ac6-473d-44a1-8fe9-a4be16c9b6d8</id>
+      <masked>false</masked>
+      <name>nName</name>
+   </variable>
+   <variable>
+      <defaultValue>'01112255449'</defaultValue>
+      <description></description>
+      <id>6df3efe6-b260-4048-9c12-b2981236dc5c</id>
+      <masked>false</masked>
+      <name>nmobile</name>
+   </variable>
+   <variable>
+      <defaultValue>'700'</defaultValue>
+      <description></description>
+      <id>91e81b04-7981-425f-a18f-0d9aa34d93d2</id>
+      <masked>false</masked>
+      <name>ncomission</name>
+   </variable>
+   <variable>
+      <defaultValue>'Saudi Arabia'</defaultValue>
+      <description></description>
+      <id>45507bbe-bece-4f9a-944c-11b9ae7ced1b</id>
+      <masked>false</masked>
+      <name>nCountry</name>
+   </variable>
+   <variable>
+      <defaultValue>'Al Kharj'</defaultValue>
+      <description></description>
+      <id>12e2d283-b8c8-42ed-9050-a9f7ad078e6b</id>
+      <masked>false</masked>
+      <name>nCity</name>
+   </variable>
+   <variable>
+      <defaultValue>'new'</defaultValue>
+      <description></description>
+      <id>166ff50e-7728-480b-a61c-09ba16ad81c2</id>
+      <masked>false</masked>
+      <name>nEmail</name>
+   </variable>
+</TestCaseEntity>

@@ -31,10 +31,10 @@ import com.kms.katalon.core.logging.KeywordLogger as KeywordLogger
 boolean AllFound = true;
 boolean correct = WebUI.callTestCase(findTestCase('Agency Sub Menu/Agency/ValidateCountryCityAgency'), [:], FailureHandling.STOP_ON_FAILURE)
 //WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
-//WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
-//WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
+//WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
+//WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
 //WebUI.waitForPageLoad(20)
-//WebUI.click(findTestObject('AgencyControlPage/btn_AddAgency'))
+//WebUI.click(findTestObject('AgencyControlPage/AgencyPage/btn_AddAgency'))
 
 KeywordLogger log = new KeywordLogger()
 
@@ -50,13 +50,13 @@ if (correct) {
         WebUI.selectOptionByLabel(findTestObject('AgencyControlPage/AddAgencyPage/combo_City'), data.internallyGetValue('City', index), 
             false,FailureHandling.OPTIONAL)
 
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyName'), data.internallyGetValue('Name', index))
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyName'), data.internallyGetValue('Name', index))
 
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyCommission'), data.internallyGetValue('Comission', index))
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyCommission'), data.internallyGetValue('Comission', index))
 
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyEmail'), data.internallyGetValue('Email', index))
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyEmail'), data.internallyGetValue('Email', index))
 
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyMobile'), data.internallyGetValue('Mobile', index))
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyMobile'), data.internallyGetValue('Mobile', index))
 
         WebUI.click(findTestObject('AgencyControlPage/AddAgencyPage/btn_SaveAgency'))
 		

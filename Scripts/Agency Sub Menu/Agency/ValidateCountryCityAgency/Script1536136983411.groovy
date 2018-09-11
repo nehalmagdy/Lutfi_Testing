@@ -40,13 +40,13 @@ ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('selec
 
 res.next()
 
-WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
 
-WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
 
 WebUI.waitForPageLoad(20)
 
-WebUI.click(findTestObject('AgencyControlPage/btn_AddAgency'))
+WebUI.click(findTestObject('AgencyControlPage/AgencyPage/btn_AddAgency'))
 
 //validate countryNames 
 WebDriver driver = DriverFactory.getWebDriver()

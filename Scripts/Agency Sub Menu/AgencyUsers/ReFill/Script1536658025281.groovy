@@ -31,25 +31,23 @@ WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com
 
 WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
 
-WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyUserMenuItem'))
 
 WebUI.waitForPageLoad(20)
 
 KeywordLogger log = new KeywordLogger()
 
-WebUI.click(findTestObject('AgencyControlPage/AgencyPage/btn_ReFill'))
+WebUI.click(findTestObject('AgencyControlPage/AgencyUsersPage/btn_ReFill'))
 
-String from = WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_From'))
+String from = WebUI.getText(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_From'))
 
-String to =  WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_To'))
+String to =  WebUI.getText(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_To'))
 
-String comission =  WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_comission'))
+String email =  WebUI.getText(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_email'))
 
-String mobile = WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_mobile'))
+String name = WebUI.getText(findTestObject('AgencyControlPage/AgencyUsersPage/SearchCard/txt_name'))
 
-String name = WebUI.getText(findTestObject('AgencyControlPage/AgencyPage/SearchCard/txt_Name'))
-
-if(name.equals("")&&from.equals("")&&to.equals("")&&mobile.equals("")&&comission.equals("")){
+if(name.equals("")&&from.equals("")&&to.equals("")&&email.equals("")){
 	log.logPassed("All Fields are clear")
 }
 else{
@@ -60,9 +58,9 @@ else{
 CustomKeywords.'com.database.lutfi.Database.connectDB'('139.162.159.139', 'staging', '3306', 'nehal', 'xRETOHqqhrnNa85e')
 
 //#of agencies that should appear
-ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select count(*) from agency where deleted_at is null')
+ResultSet res = CustomKeywords.'com.database.lutfi.Database.executeQuery'('select count(*) from users where group_id = 3 and deleted_at is null')
 res.next()
-int agencyCount = res.getInt(1)
+int agencyUsersCount = res.getInt(1)
 
 //get agency grid Table count
 WebDriver driver = DriverFactory.getWebDriver()
@@ -73,7 +71,7 @@ WebUI.delay(10)
 List<WebElement> rows_table = tbody.findElements(By.tagName('tr'))
 int rows_count = rows_table.size()
 WebUI.delay(10)
-if (rows_count == agencyCount) {
+if (rows_count == agencyUsersCount) {
 	log.logPassed("Data is Refilled Correctly")
 }
 else{

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>btn_Delete</name>
+   <tag></tag>
+   <elementGuidId>62e97059-55fe-46dc-8738-a4b652d3d80f</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//*[@id=&quot;dataTableBuilder_wrapper&quot;]/div[2]/div[1]/div/table/thead/tr[1]/th/form/div[6]/i[1]</value>
+   </webElementProperties>
+</WebElementEntity>

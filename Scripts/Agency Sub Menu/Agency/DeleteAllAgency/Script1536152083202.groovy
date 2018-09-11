@@ -30,17 +30,17 @@ WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com
 
 KeywordLogger log = new KeywordLogger()
 
-WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
 
-WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
 
 WebUI.waitForPageLoad(20)
 
-WebUI.click(findTestObject('AgencyControlPage/SearchCard/btn_SelectAll'))
+WebUI.click(findTestObject('AgencyControlPage/AgencyPage/SearchCard/btn_SelectAll'))
 
-WebUI.click(findTestObject('AgencyControlPage/SearchCard/btn_Delete'))
+WebUI.click(findTestObject('AgencyControlPage/AgencyPage/SearchCard/btn_Delete'))
 
-WebUI.click(findTestObject('AgencyControlPage/SearchCard/btn_deleteConfirm'))
+WebUI.click(findTestObject('AgencyControlPage/AgencyPage/SearchCard/btn_deleteConfirm'))
 
 
 WebDriver driver = DriverFactory.getWebDriver()

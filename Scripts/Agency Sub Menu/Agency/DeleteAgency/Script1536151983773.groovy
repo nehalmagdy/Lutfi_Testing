@@ -27,8 +27,8 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import com.kms.katalon.core.logging.KeywordLogger as KeywordLogger
 
 WebUI.callTestCase(findTestCase('Valid_Login'), [('username') : 'nehal@gmail.com', ('password') : 'testernehal735'], FailureHandling.STOP_ON_FAILURE)
-WebUI.click(findTestObject('AgencyControlPage/AgencyMenuItem'))
-WebUI.click(findTestObject('AgencyControlPage/AgencySubItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencyMenuItem'))
+WebUI.click(findTestObject('AgencyControlPage/MenuItems/AgencySubItem'))
 WebUI.waitForPageLoad(20)
 
 KeywordLogger log = new KeywordLogger()
@@ -43,31 +43,42 @@ int rows_count = rows_table.size()
 
 //Random rnd = new Random()
 //int rowind = (1 + rnd.nextInt(rows_count))
-
-List<WebElement> Columns_row = rows_table.get(rows_count - 1).findElements(By.tagName('td'))
-String id = Columns_row[0].findElement(By.tagName("input")).getAttribute("value")
-
-Columns_row[3].findElement(By.tagName('span')).click()
-
-WebUI.click(findTestObject('AgencyControlPage/YesDelete'))
-
-//validate the success card
-
-
-//
- Table = driver.findElement(By.xpath('//*[@id=\'dataTableBuilder\']'))
- WebUI.delay(10)
- tbody = Table.findElement(By.tagName('tbody'))
- WebUI.delay(10)
- rows_table = tbody.findElements(By.tagName('tr'))
-int nrows_count = rows_table.size()
-Columns_row = rows_table.get(nrows_count - 1).findElements(By.tagName('td'))
-
-String nid = Columns_row[0].findElement(By.tagName("input")).getAttribute("value")
-
-if(nrows_count== rows_count-1 && nid!=id){
-	log.logPassed("Passed: Deleted Successfully")
-}
-else{
-	log.logFailed("Failed: Not Deleted")
+if(rows_count > 0){
+	List<WebElement> Columns_row = rows_table.get(rows_count - 1).findElements(By.tagName('td'))
+	String id = Columns_row[0].findElement(By.tagName("input")).getAttribute("value")
+	
+	Columns_row[3].findElement(By.tagName('span')).click()
+	
+	WebUI.click(findTestObject('AgencyControlPage/AgencyPage/YesDelete'))
+	
+	//validate the success card
+	
+	
+	//
+	 Table = driver.findElement(By.xpath('//*[@id=\'dataTableBuilder\']'))
+	 WebUI.delay(10)
+	 tbody = Table.findElement(By.tagName('tbody'))
+	 WebUI.delay(10)
+	 rows_table = tbody.findElements(By.tagName('tr'))
+	int nrows_count = rows_table.size()
+	Columns_row = rows_table.get(nrows_count - 1).findElements(By.tagName('td'))
+	
+	String nid = Columns_row[0].findElement(By.tagName("input")).getAttribute("value")
+	if(rows_count > 1){
+		if(nrows_count== rows_count-1 && nid!=id){
+			log.logPassed("Passed: Deleted Successfully")
+		}
+		else{
+			log.logFailed("Failed: Not Deleted or the shown data is incorrect")
+		}
+	}
+	else{
+		// there was only one user agency and it was deleted so the table is empty
+		if(nrows_count == 0){
+			log.logPassed("Passed: Deleted Successfully")
+		}
+		else{
+			log.logFailed("Failed: Not Deleted")
+		}
+	}
 }

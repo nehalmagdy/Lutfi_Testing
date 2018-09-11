@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>SearchAgencyTransactions</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>aeef9185-eee3-4b7c-a78b-f460bf8bb247</testCaseGuid>
+   <variable>
+      <defaultValue>'2018-08-11'</defaultValue>
+      <description>year-month-day</description>
+      <id>af76f6dd-80a4-4a80-8dae-19c5008acca1</id>
+      <masked>false</masked>
+      <name>SearchDate</name>
+   </variable>
+</TestCaseEntity>

@@ -47,13 +47,13 @@ String ci = city
 
 		WebUI.delay(10)
 		
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyName'), name)
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyName'), name)
 
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyCommission'), comission)
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyCommission'), comission)
 
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyEmail'), mail)
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyEmail'), mail)
 
-        WebUI.setText(findTestObject('AgencyControlPage/txt_AgencyMobile'), mobile)
+        WebUI.setText(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyMobile'), mobile)
 
         WebUI.click(findTestObject('AgencyControlPage/AddAgencyPage/btn_SaveAgency'))
 		
@@ -79,13 +79,13 @@ String ci = city
 			WebUI.waitForPageLoad(10)
 			
 			
-			String ename = WebUI.getAttribute(findTestObject('AgencyControlPage/txt_AgencyName'),'value')
+			String ename = WebUI.getAttribute(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyName'),'value')
 	
-			String ecom =  WebUI.getAttribute(findTestObject('AgencyControlPage/txt_AgencyCommission'),'value')
+			String ecom =  WebUI.getAttribute(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyCommission'),'value')
 	
-			String email =  WebUI.getAttribute(findTestObject('AgencyControlPage/txt_AgencyEmail'),'value')
+			String email =  WebUI.getAttribute(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyEmail'),'value')
 	
-			String emob =  WebUI.getAttribute(findTestObject('AgencyControlPage/txt_AgencyMobile'),'value')
+			String emob =  WebUI.getAttribute(findTestObject('AgencyControlPage/AddAgencyPage/txt_AgencyMobile'),'value')
 	
 			if(ename.equals(name) && ecom.equals(comission) && email.equals(mail)&&emob.equals(emob))
 			{
